@@ -12,7 +12,9 @@
 		"sandstone": "game:block/stone/sand/sandstone",
 		"water": "game:block/liquid/waterportion",
 		"sides": "block/basin/sides",
-		"top-empty": "block/basin/top-empty"
+		"top-empty": "block/basin/top-empty",
+		"side10": "block/side10",
+		"thatchbedding-ready": "block/thatchbedding-ready"
 	},
 	"elements": [
 		{

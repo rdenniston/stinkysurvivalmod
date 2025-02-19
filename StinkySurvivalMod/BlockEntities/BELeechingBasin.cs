@@ -18,6 +18,7 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StinkySurvivalMod.BlockEntities
 {
@@ -128,7 +129,8 @@ namespace StinkySurvivalMod.BlockEntities
         public string GetConversion()
         {
             string itemcode = Inventory[0]?.Itemstack?.Collectible?.Code?.ToString();
-            string liq = Inventory[1]?.Itemstack?.Collectible?.Code?.ToString();            //if we don't have everything false            
+            string liq = Inventory[1]?.Itemstack?.Collectible?.Code?.ToString();            
+            //if we don't have everything false            
             if (itemcode == null || liq == null) return string.Empty;
             //recipes basically
             if (itemcode == "stinkysurvivalmod:saltedthatch" && liq == "stinkysurvivalmod:lyeportion") return "stinkysurvivalmod:hydratedsaltpeterportion";
@@ -425,13 +427,15 @@ namespace StinkySurvivalMod.BlockEntities
             }
 
             mesher.AddMeshData(getOrCreateMesh(bucketState, piece));
+            ItemStack liq = Inventory[1].Itemstack;
+            Dictionary<string, MeshData> Meshes = ObjectCacheUtil.GetOrCreate(Api, "leechingbasin-meshes", () => new Dictionary<string, MeshData>());
+            Block block = Api.World.BlockAccessor.GetBlock(Pos);
+            MeshData data;
+            BlockLiquidContainerBase bbucket = Inventory[2]?.Itemstack?.Collectible as BlockLiquidContainerBase;
 
             if (Inventory[1]?.Itemstack != null)
             {
-                ItemStack liq = Inventory[1].Itemstack;
-                Dictionary<string, MeshData> Meshes = ObjectCacheUtil.GetOrCreate(Api, "leechingbasin-meshes", () => new Dictionary<string, MeshData>());
-                Block block = Api.World.BlockAccessor.GetBlock(Pos);
-                MeshData data;
+                
                 if (liq.StackSize > 0)
                 {
                     string key = "liquid";
@@ -442,49 +446,74 @@ namespace StinkySurvivalMod.BlockEntities
 
                         ITesselatorAPI mesherer = ((ICoreClientAPI)Api).Tesselator;
                         mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
+                        Meshes[key] = data;
                     }
                     if (data == null) { Api.Logger.Notification("liquid shape in leechingbasin null"); return true; }
                     WaterTightContainableProps props = BlockLeechingBasin.GetContainableProps(Inventory[1].Itemstack);
                     if (props != null)
                     {
-
+                        data = data.Clone();
                         float fillheight = ((float)(liq.StackSize / props.ItemsPerLitre) / 20) * (0.3125f); //0.3125 == 5.0/16.0
                         data.Translate(0, fillheight + 1.0f, 0); //plus 1.0 because inventory only exists in bottom block
                     }
 
                     mesher.AddMeshData(data);
                 }
-                BlockLiquidContainerBase bbucket = Inventory[2]?.Itemstack?.Collectible as BlockLiquidContainerBase;
-                if (bbucket != null) 
+                
+            }
+
+            if (bbucket != null)
+            {
+                ItemStack[] liqs = bbucket.GetContents(Api.World, Inventory[2].Itemstack);
+                //  Api.Logger.Notification("liqs any {0}", liqs.Any());
+                if (liqs.Any())
                 {
-                    ItemStack[] liqs = bbucket.GetContents(Api.World, Inventory[2].Itemstack);
-                  //  Api.Logger.Notification("liqs any {0}", liqs.Any());
-                    if (liqs.Any())
-                    {
-                        data = null;
-                        var bucketliq = liqs[0];
+                    data = null;
+                    var bucketliq = liqs[0];
                     //    Api.Logger.Notification("bucketliq.StackSize {0}", bucketliq.StackSize);
-                        if (bucketliq.StackSize > 0)
+                    if (bucketliq.StackSize > 0)
+                    {
+                        string key = "liquidbucket";
+                        if (!Meshes.TryGetValue(key, out data))
                         {
-                            string key = "liquidbucket";
-                            if (!Meshes.TryGetValue(key, out data))
-                            {
-                                ITesselatorAPI mesherer = ((ICoreClientAPI)Api).Tesselator;
-                                mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
-                            }
-                            if (data == null) { Api.Logger.Notification("liquidbucket shape in leechingbasin null"); return true; }
-                            WaterTightContainableProps props = BlockLeechingBasin.GetContainableProps(bucketliq);
-                            
-                            if (props != null)
-                            {
-
-                                float fillheight = ((float)(bucketliq.StackSize / props.ItemsPerLitre) / bbucket.CapacityLitres) * (0.5f); //0.5 == 8.0/16.0
-                                data.Translate(0, fillheight, 0); //plus 1.0 because inventory only exists in bottom block
-                            }
-
-                            mesher.AddMeshData(data);
+                            ITesselatorAPI mesherer = ((ICoreClientAPI)Api).Tesselator;
+                            mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
+                            Meshes[key] = data;
                         }
+                        if (data == null) { Api.Logger.Notification("liquidbucket shape in leechingbasin null"); return true; }
+                        WaterTightContainableProps props = BlockLeechingBasin.GetContainableProps(bucketliq);
+
+                        if (props != null)
+                        {
+                            data = data.Clone();
+                            float fillheight = ((float)(bucketliq.StackSize / props.ItemsPerLitre) / bbucket.CapacityLitres) * (0.5f); //0.5 == 8.0/16.0
+                            data.Translate(0, fillheight, 0); //plus 1.0 because inventory only exists in bottom block
+                        }
+
+                        mesher.AddMeshData(data);
                     }
+                }
+            }
+
+            if (Inventory[0]?.Itemstack != null && !Inventory[0].Empty)
+            {
+                string code = Inventory[0].Itemstack.Collectible.Code.ToString();
+                string key = null;
+                data = null;
+                if (code == "stinkysurvivalmod:saltedthatch")  key = "saltthatch";
+                if (code == "stinkysurvivalmod:woodash") key = "ashes";
+                if (key != null)
+                {
+                    if (!Meshes.TryGetValue(key, out data))
+                    {
+                        ITesselatorAPI mesherer = ((ICoreClientAPI)Api).Tesselator;
+                        mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
+                        Meshes[key] = data;
+                    }
+                    data = data.Clone();
+                    data.Translate(0, 1.0f, 0);
+                    if (data == null) { Api.Logger.Notification("liquidbucket shape in leechingbasin null"); return true; }
+                    mesher.AddMeshData(data);
                 }
             }
             return true;
@@ -495,17 +524,18 @@ namespace StinkySurvivalMod.BlockEntities
             Dictionary<string, MeshData> Meshes = ObjectCacheUtil.GetOrCreate(Api, "leechingbasin-meshes", () => new Dictionary<string, MeshData>());
 
             string key = bucketState + "-" + piece;
-           // Api.Logger.Notification("mesh key: " + key);
+            Block block = Api.World.BlockAccessor.GetBlock(Pos);
+            if (block.BlockId == 0) return null;
+            // Api.Logger.Notification("mesh key: " + key);
             MeshData meshdata;
             if (!Meshes.TryGetValue(key, out meshdata))
             {
-                Block block = Api.World.BlockAccessor.GetBlock(Pos);
-                if (block.BlockId == 0) return null;
-
+                
                // MeshData[] meshes = new MeshData[4];
                 ITesselatorAPI mesher = ((ICoreClientAPI)Api).Tesselator;
 
                 mesher.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out meshdata);
+                Meshes[key] = meshdata;
             }
 
             return meshdata;

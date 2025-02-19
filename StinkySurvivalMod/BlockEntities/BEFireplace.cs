@@ -513,16 +513,18 @@ namespace StinkySurvivalMod.BlockEntities
             string key = burnstate+"-"+fuelstate+"-"+ashstate;
          //   Api.Logger.Notification("mesh key: "+ key);
             MeshData meshdata;
+            Block block = Api.World.BlockAccessor.GetBlock(Pos);
+            if (block.BlockId == 0) return null;
             if (!Meshes.TryGetValue(key, out meshdata))
             {
-                Block block = Api.World.BlockAccessor.GetBlock(Pos);
-                if (block.BlockId == 0) return null;
 
                 MeshData[] meshes = new MeshData[24];
                 ITesselatorAPI mesher = ((ICoreClientAPI)Api).Tesselator;
                 
                 mesher.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/fireplace/fireplace-" + key + ".json"), out meshdata);
+                Meshes[key] = meshdata;
             }
+
 
             return meshdata;
         }

@@ -1,0 +1,93 @@
+{
+	"editor": {
+		"collapsedPaths": "Root/Origin lid/origin handle,Root/origin/origin handle W,Root/origin upper ring,Root/origin/origin handle E,Root/origin lower ring,Root/origin,Root/origin barrel,Root/origin barrel/Origin lid,Root/Origin lid/Cube14",
+		"allAngles": true,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"sides": "block/basin/sides",
+		"thatchbedding-ready": "block/thatchbedding-ready"
+	},
+	"elements": [
+		{
+			"name": "Liquid",
+			"from": [ 3.0, 5.0, 3.0 ],
+			"to": [ 13.0, 6.0, 13.0 ],
+			"renderPass": 1,
+			"rotationOrigin": [ 3.0, 5.0, 3.0 ],
+			"faces": {
+				"north": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.0, 1.0 ], "enabled": false },
+				"east": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.0, 1.0 ], "enabled": false },
+				"south": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.0, 1.0 ], "enabled": false },
+				"west": { "texture": "#sandstone", "uv": [ 0.0, 0.0, 10.0, 1.0 ], "enabled": false },
+				"up": { "texture": "#thatchbedding-ready", "uv": [ 0.0, 0.0, 10.0, 9.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.0, 10.0 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "LiquidEdge",
+					"from": [ -1.0, 0.0, -0.25 ],
+					"to": [ 0.0, 1.0, 10.25 ],
+					"renderPass": 1,
+					"rotationOrigin": [ -1.0, 0.0, -1.0 ],
+					"faces": {
+						"north": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"east": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"south": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"west": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"up": { "texture": "#thatchbedding-ready", "uv": [ 8.0, 3.0, 9.0, 13.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 10.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "LiquidEdge2",
+					"from": [ 10.0, 0.0, -0.25 ],
+					"to": [ 11.0, 1.0, 10.25 ],
+					"renderPass": 1,
+					"rotationOrigin": [ 10.0, 0.0, -1.0 ],
+					"faces": {
+						"north": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"east": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"south": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"west": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"up": { "texture": "#thatchbedding-ready", "uv": [ 9.5, 3.0, 10.5, 13.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 10.5 ], "enabled": false }
+					}
+				},
+				{
+					"name": "LiquidEdge3",
+					"from": [ -0.5, 0.0, -1.1 ],
+					"to": [ 10.0, 1.0, 0.0 ],
+					"renderPass": 1,
+					"rotationOrigin": [ -1.0, 0.0, -1.0 ],
+					"faces": {
+						"north": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"east": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"south": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"west": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"up": { "texture": "#thatchbedding-ready", "uv": [ 3.5, 7.5, 14.0, 8.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false }
+					}
+				},
+				{
+					"name": "LiquidEdge4",
+					"from": [ -0.5, 0.0, 9.9 ],
+					"to": [ 10.0, 1.0, 11.0 ],
+					"renderPass": 1,
+					"rotationOrigin": [ -1.0, 0.0, 10.0 ],
+					"faces": {
+						"north": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"east": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"south": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false },
+						"west": { "texture": "#sides", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "enabled": false },
+						"up": { "texture": "#thatchbedding-ready", "uv": [ 5.5, 3.5, 16.0, 4.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#sides", "uv": [ 0.0, 0.0, 10.5, 1.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}
