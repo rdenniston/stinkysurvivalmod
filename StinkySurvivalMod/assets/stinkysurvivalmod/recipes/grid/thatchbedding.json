@@ -1,0 +1,15 @@
+{
+  "ingredientPattern": "T,T,T,T",
+  "width": 2,
+  "height": 2,
+  "ingredients": {
+      "T": {
+        "type": "item",
+        "code": "game:thatch"
+      }
+  },
+  "output": {
+    "type": "block",
+    "code": "thatchbedding-init"
+  }
+}

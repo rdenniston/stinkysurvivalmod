@@ -1,0 +1,116 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\$(Configuration)\Mods\mod</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI">
+      <HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VSSurvivalMod">
+      <HintPath>$(VINTAGE_STORY)/Mods/VSSurvivalMod.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VSEssentials">
+      <HintPath>$(VINTAGE_STORY)/Mods/VSEssentials.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VSCreativeMod">
+      <HintPath>$(VINTAGE_STORY)/Mods/VSCreativeMod.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(VINTAGE_STORY)/Lib/Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(VINTAGE_STORY)/Lib/0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VintagestoryLib">
+      <HintPath>$(VINTAGE_STORY)/VintagestoryLib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>$(VINTAGE_STORY)/Lib/protobuf-net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="cairo-sharp">
+      <HintPath>$(VINTAGE_STORY)/Lib/cairo-sharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Sqlite">
+      <HintPath>$(VINTAGE_STORY)/Lib/Microsoft.Data.Sqlite.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+<ItemGroup>
+  <Content Include="assets\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <None Remove="assets\stinkysurvivalmod\blocktypes\leechingbasin.json" />
+  <None Remove="assets\stinkysurvivalmod\itemtypes\hydratedsaltpeterportion.json" />
+  <None Remove="assets\stinkysurvivalmod\itemtypes\lyeportion.json" />
+  <None Remove="assets\stinkysurvivalmod\itemtypes\woodash.json" />
+  <None Remove="assets\stinkysurvivalmod\recipes\thatchbedding.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\basin\bottom.png" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\basin\bucketsides.png" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\basin\innerside.png" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\basin\leechingbasin-bucket.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\basin\leechingbasin-nobucket.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace-4.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace-cold.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace-lit.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-empty-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-empty-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-full-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-full-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-one-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-one-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-two-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-cold-two-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-empty-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-empty-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-full-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-full-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-one-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-one-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-two-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-extinct-two-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-empty-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-empty-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-full-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-full-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-one-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-one-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-two-ashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-lit-two-noashes.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\item\ash.json" />
+  <None Remove="assets\stinkysurvivalmod\shapes\item\fireplace.json" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\basin\bottomspout.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\basin\sides.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\basin\top-empty.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\basin\top.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\burned.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\front10.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\north.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\rusty-iron.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\saltedbundle.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\side.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\side10.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-growth.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-init.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-mature.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-ready.png" />
+  <Content Include="modinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+
+</Project>

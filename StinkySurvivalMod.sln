@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StinkySurvivalMod", "StinkySurvivalMod\StinkySurvivalMod.csproj", "{80C0E7D7-DBCA-46DC-AE4A-09EA6F44898F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeBuild", "ZZCakeBuild\CakeBuild.csproj", "{9E4EEB44-86F7-4A90-A906-6F46C9274D90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80C0E7D7-DBCA-46DC-AE4A-09EA6F44898F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C0E7D7-DBCA-46DC-AE4A-09EA6F44898F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C0E7D7-DBCA-46DC-AE4A-09EA6F44898F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C0E7D7-DBCA-46DC-AE4A-09EA6F44898F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E4EEB44-86F7-4A90-A906-6F46C9274D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E4EEB44-86F7-4A90-A906-6F46C9274D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E4EEB44-86F7-4A90-A906-6F46C9274D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E4EEB44-86F7-4A90-A906-6F46C9274D90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F9EAD5C-FFE9-4352-9F00-335FC0ADF423}
+	EndGlobalSection
+EndGlobal

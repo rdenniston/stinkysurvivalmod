@@ -1,0 +1,69 @@
+{
+  "code": "leechingbasin",
+  "class": "stinkysurvivalmod.blockleechingbasin",
+  "entityClassByType": {
+    "*-bottom": "stinkysurvivalmod.beleechingbasin"
+  },
+  "variantgroups": [
+    {
+      "code": "attached",
+      "states": [ "bucket", "nobucket" ]
+    },
+    {
+      "code": "part",
+      "states": [ "top", "bottom" ]
+    }
+  ],
+  "attributesByType": {
+    "*-top": {
+      "capacityLitres": 20
+    }
+  },
+  "combustibleProps": {
+    "burnTemperature": 600,
+    "burnDuration": 40
+  },
+  "shape": { "base": "block/basin/leechingbasin-{attached}-{part}" },
+  "shapeinventoryByType": {
+    "leechingbasin-bucket-*": { "base": "block/basin/leechingbasin-bucket" },
+    "leechingbasin-nobucket-*": { "base": "block/basin/leechingbasin-nobucket" }
+  },
+  "heldTpIdleAnimation": "holdunderarm",
+  "faceCullMode": "NeverCull",
+  "creativeinventory": {
+    "general": [ "*-bottom" ],
+    "decorative": [ "*-bottom" ]
+  },
+  "sidesolid": {
+    "all": false
+  },
+  "sideopaque": {
+    "all": false
+  },
+  "collisionbox": {
+    "x1": 0,
+    "y1": 0,
+    "z1": 0,
+    "x2": 1,
+    "y2": 1,
+    "z2": 1
+  },
+  "selectionboxByType": {
+    "*-top": {
+      "x1": 0.045,
+      "y1": 0,
+      "z1": 0.045,
+      "x2": 0.955,
+      "y2": 0.75,
+      "z2": 0.955
+    },
+    "*-bottom": {
+      "x1": 0.25,
+      "y1": 0,
+      "z1": 0.25,
+      "x2": 0.75,
+      "y2": 0.70,
+      "z2": 0.75
+    }
+  }
+}

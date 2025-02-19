@@ -1,0 +1,13 @@
+{
+  "type": "code",
+  "modid": "stinkysurvivalmod",
+  "name": "StinkySurvivalMod",
+  "authors": [
+    "DunnoWatImDoin"
+  ],
+  "description": "This mod adds saltpeter and compost production from animal waste",
+  "version": "1.0.0",
+  "dependencies": {
+    "game": ""
+  }
+}

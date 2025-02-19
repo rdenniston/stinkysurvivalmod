@@ -1,0 +1,25 @@
+{
+  "code": "thatchbedding",
+  "class": "stinkysurvivalmod.blockthatchbedding",
+  "entityclass": "stinkysurvivalmod.bethatchbedding",
+  "blockmaterial": "soil",
+  "creativeinventory": { "general": [ "thatchbedding-init" ] },
+  "variantgroups": [
+    {
+      "code": "saltlevel",
+      "states": [
+        "init",
+        "growth",
+        "mature",
+        "ready"
+      ]
+    }
+  ],
+  "textures": {
+    "all": { "base": "block/thatchbedding-{saltlevel}" }
+  },
+  "sounds": {
+    "place": "game:block/plant",
+    "break": "game:block/dirt"
+  }
+}

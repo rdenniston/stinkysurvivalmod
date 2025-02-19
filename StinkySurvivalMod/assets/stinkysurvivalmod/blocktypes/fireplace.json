@@ -1,0 +1,345 @@
+{
+	"code": "fireplace",
+	"class": "stinkysurvivalmod.blockfireplace",
+	"entityClass": "stinkysurvivalmod.befireplace",
+	"variantgroups": [
+		{
+			"code": "burnstate",
+			"states": [ "extinct", "lit", "cold" ]
+		},
+		{
+			"code": "fuelstate",
+			"states": ["empty","one","two","full"]
+		},
+		{
+			"code": "ashstate",
+			"states": [ "ashes", "noashes" ]
+		}
+	],
+	"renderpass": "OpaqueNoCull",
+	"faceCullMode": "NeverCull",
+	"shape": { "base": "block/fireplace/fireplace-{burnstate}-{fuelstate}-{ashstate}" },
+	"creativeinventory": {
+		"general": [ "*" ],
+		"decorative": [ "*" ]
+	},
+	"sidesolid": {
+		"all": false
+	},
+	"sideopaque": {
+		"all": false
+	},
+	"lightAbsorption": 0,
+	"lightHsvByType": {
+		"fireplace-extinct-*": [ 7, 7, 3 ],
+		"fireplace-lit-*": [ 7, 7, 20 ]
+	},
+	"materialDensity": 500,
+	"particlePropertiesByType": {
+		"fireplace-extinct-*": [
+			{
+				"hsvaColor": [
+					{
+						"avg": 0,
+						"var": 0
+					},
+					{
+						"avg": 0,
+						"var": 0
+					},
+					{
+						"avg": 70,
+						"var": 30
+					},
+					{
+						"avg": 220,
+						"var": 50
+					}
+				],
+				"opacityEvolve": {
+					"transform": "quadratic",
+					"factor": -16
+				},
+				"gravityEffect": {
+					"avg": 0,
+					"var": 0
+				},
+				"posOffset": [
+					{
+						"avg": 0,
+						"var": 0.2
+					},
+					{
+						"avg": -0.4,
+						"var": 0
+					},
+					{
+						"avg": 0,
+						"var": 0.2
+					}
+				],
+				"velocity": [
+					{
+						"avg": 0,
+						"var": 0.05
+					},
+					{
+						"avg": 0.1,
+						"var": 0.05
+					},
+					{
+						"avg": 0,
+						"var": 0.05
+					}
+				],
+				"quantity": { "avg": 0.02 },
+				"size": {
+					"avg": 0.3,
+					"var": 0.05
+				},
+				"sizeEvolve": {
+					"transform": "linear",
+					"factor": 1.5
+				},
+				"particleModel": "Quad",
+				"windAffectednes": 0.7
+			}
+		],
+		"fireplace-lit-*": [
+			{
+				"__comment": "Ember cubicles",
+				"hsvaColor": [
+					{
+						"avg": 30,
+						"var": 20
+					},
+					{
+						"avg": 255,
+						"var": 50
+					},
+					{
+						"avg": 255,
+						"var": 50
+					},
+					{
+						"avg": 255,
+						"var": 0
+					}
+				],
+				"gravityEffect": {
+					"dist": "invexp",
+					"avg": -0.1,
+					"var": 0.2
+				},
+				"posOffset": [
+					{
+						"avg": 0,
+						"var": 0.4
+					},
+					{
+						"avg": -0.4,
+						"var": 0
+					},
+					{
+						"avg": 0,
+						"var": 0.2
+					}
+				],
+				"velocity": [
+					{
+						"avg": 0,
+						"var": 0.15
+					},
+					{
+						"avg": 0.3,
+						"var": 0.2
+					},
+					{
+						"avg": 0,
+						"var": 0.15
+					}
+				],
+				"quantity": { "avg": 0.15 },
+				"size": {
+					"avg": 0.4,
+					"var": 0.1
+				},
+				"sizeEvolve": {
+					"transform": "quadratic",
+					"factor": -0.7
+				},
+				"lifeLength": { "avg": 0.75 },
+				"vertexFlags": 128,
+				"windAffectednes": 0.2
+			},
+			{
+				"__comment": "Smoke quads",
+				"hsvaColor": [
+					{
+						"avg": 0,
+						"var": 0
+					},
+					{
+						"avg": 0,
+						"var": 0
+					},
+					{
+						"avg": 70,
+						"var": 30
+					},
+					{
+						"avg": 220,
+						"var": 50
+					}
+				],
+				"opacityEvolve": {
+					"transform": "linear",
+					"factor": -255
+				},
+				"gravityEffect": {
+					"avg": 0,
+					"var": 0
+				},
+				"posOffset": [
+					{
+						"avg": 0,
+						"var": 0.2
+					},
+					{
+						"avg": -0.4,
+						"var": 0
+					},
+					{
+						"avg": 0,
+						"var": 0.2
+					}
+				],
+				"velocity": [
+					{
+						"avg": 0,
+						"var": 0.025
+					},
+					{
+						"avg": 0.2,
+						"var": 0.05
+					},
+					{
+						"avg": 0,
+						"var": 0.025
+					}
+				],
+				"quantity": { "avg": 0.15 },
+				"size": {
+					"avg": 0.3,
+					"var": 0.09
+				},
+				"sizeEvolve": {
+					"transform": "linear",
+					"factor": 1.5
+				},
+				"particleModel": "Quad",
+				"lifeLength": { "avg": 24 },
+				"selfPropelled": true,
+				"windAffectednes": 0.7
+			},
+			{
+				"__comment": "Fire quads",
+				"hsvaColor": [
+					{
+						"avg": 20,
+						"var": 20
+					},
+					{
+						"avg": 255,
+						"var": 50
+					},
+					{
+						"avg": 255,
+						"var": 50
+					},
+					{
+						"avg": 255,
+						"var": 0
+					}
+				],
+				"opacityEvolve": {
+					"transform": "quadratic",
+					"factor": -16
+				},
+				"gravityEffect": {
+					"avg": 0,
+					"var": 0
+				},
+				"posOffset": [
+					{
+						"avg": 0,
+						"var": 0.4
+					},
+					{
+						"avg": -0.6,
+						"var": 0.1
+					},
+					{
+						"avg": 0,
+						"var": 0.1
+					}
+				],
+				"velocity": [
+					{
+						"avg": 0,
+						"var": 0.1
+					},
+					{
+						"avg": 0.125,
+						"var": 0.05
+					},
+					{
+						"avg": 0,
+						"var": 0.1
+					}
+				],
+				"quantity": { "avg": 1.5 },
+				"size": {
+					"avg": 0.35,
+					"var": 0.1
+				},
+				"lifeLength": { "avg": 0.25 },
+				"sizeEvolve": {
+					"transform": "linear",
+					"factor": 0.25
+				},
+				"particleModel": "Quad",
+				"vertexFlags": 128,
+				"windAffectednes": 0.5
+			}
+		]
+	},
+	"collisionbox": null,
+	"selectionbox": {
+		"x1": 0.1875,
+		"y1": 0,
+		"z1": 0.1875,
+		"x2": 0.8125,
+		"y2": 0.60,
+		"z2": 0.8125
+	},
+	"guiTransform": {
+		"translation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"rotation": {
+			"x": 10,
+			"y": 20,
+			"z": 0
+		},
+		"origin": {
+			"x": 0.5,
+			"y": 0.2,
+			"z": 0.5
+		},
+		"scale": 2.0
+	}
+
+}
