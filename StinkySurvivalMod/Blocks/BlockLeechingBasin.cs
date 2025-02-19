@@ -125,6 +125,20 @@ namespace StinkySurvivalMod.Blocks
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
         }
 
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
+        {
+            if(LastCodePart() == "top")
+            {
+                return Lang.Get("stinkysurvivalmod:basin-top-name");
+            }else if(LastCodePart() == "bottom")
+            {
+                return Lang.Get("stinkysurvivalmod:basin-bottom-name");
+            }
+            else
+            {
+                return base.GetPlacedBlockName(world, pos);
+            }
+        }
         public override string GetPlacedBlockInfo(IWorldAccessor world, BlockPos pos, IPlayer forPlayer)
         {
             if(LastCodePart() == "top")
@@ -135,12 +149,35 @@ namespace StinkySurvivalMod.Blocks
                 {
                     if (bebasin?.Inventory[1]?.Itemstack != null)
                     {
-                        info += "Contains " +  (bebasin.Inventory[1].Itemstack.StackSize / 100).ToString("0.#") + "L of " + bebasin.Inventory[1].GetStackName();
+                        info += "Basin: " +  (bebasin.Inventory[1].Itemstack.StackSize / 100.0f).ToString("f") + "L of " + bebasin.Inventory[1].GetStackName()+"\n";
                     }
                     else
                     {
-                        info += "Contains no liquids";
+                        info += "Basin: no liquids\n";
                     }
+                    if (bebasin?.Inventory[2]?.Itemstack != null)
+                    {
+                        BlockLiquidContainerBase bbucket = bebasin.Inventory[2]?.Itemstack?.Collectible as BlockLiquidContainerBase;
+                        var bucketcontents = bbucket.GetContents(api.World, bebasin.Inventory[2]?.Itemstack);
+                        if (bucketcontents.Any() && bucketcontents[0].StackSize > 0)
+                        {
+                            info += "Container: " + (bucketcontents[0].StackSize / 100.0f).ToString("f") + "L of " + bucketcontents[0].GetName();
+                            /* If they have items that process and incorrect bucket contents warn
+                             * the player
+                             */
+                            if (bebasin?.Inventory[0]?.Itemstack?.Collectible?.Code != null && bebasin?.Inventory[0]?.Itemstack.StackSize > 0 &&
+                                    ((bebasin?.Inventory[0]?.Itemstack?.Collectible?.Code.ToString() == "stinkysurvivalmod:saltedthatch" &&
+                                    bucketcontents[0].Collectible.Code.ToString() != "stinkysurvivalmod:hydratedsaltpeterportion") ||
+                                    (bebasin?.Inventory[0]?.Itemstack?.Collectible?.Code.ToString() == "stinkysurvivalmod:woodash" &&
+                                    bucketcontents[0].Collectible.Code.ToString() != "stinkysurvivalmod:lyeportion"))
+                                )
+                            {
+                                info += "WARNING: Incorrect Container contents! Output will not be produced!";
+                            }
+                        }
+                        
+                    }
+                    
                 }
                 else
                 {

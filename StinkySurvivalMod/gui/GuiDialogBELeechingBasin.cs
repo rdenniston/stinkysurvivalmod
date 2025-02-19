@@ -104,10 +104,10 @@ namespace StinkySurvivalMod.gui
                 var contents = cntBucket.GetContents(capi.World, bucketslot);
                 if (cntBucket.IsFull(bucketslot))
                 {
-                    warningStr = "Warning: Attached container is full! Leech liquids will be lost!";
+                    warningStr = "Warning: Attached container is full! Leeching liquids will be lost!";
                 }
                 
-                if (contents != null && itemcode != null) 
+                if (contents.Any() && itemcode != null) 
                 {
                     if (contents[0]?.Collectible?.Code?.ToString() != "game:waterportion") { }
                 }

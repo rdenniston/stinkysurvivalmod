@@ -1,5 +1,9 @@
 {
   "fireplace-gui-ashes-name": "wood ashes",
+  "basin-top-name": "Leeching Basin (Top)",
+  "item-lyeportion": "Lye",
+  "incontainer-item-lyeportion": "Lye",
+  "basin-bottom-name": "Leeching Basin (Bottom)",
   "Fireplace": "Iron Fireplace",
   "fireplace-gui-willcreate": "Creating {0}x",
   "fireplace-gui-instructions": "Place in the top slot firewood or other burnable with burn length >10 seconds to create wood ash.",

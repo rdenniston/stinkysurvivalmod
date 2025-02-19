@@ -121,11 +121,15 @@ namespace StinkySurvivalMod.BlockEntities
             //if we don't have everything false            
             if (itemcode == null || liq == null || bucketSlot.Empty ) return false;
             //recipes basically
+    //        Api.Logger.Notification($"{itemcode}" + $"{liq}");
             if (itemcode == "stinkysurvivalmod:saltedthatch" && liq == "stinkysurvivalmod:lyeportion") return true;
             if (itemcode == "stinkysurvivalmod:woodash" && liq == "game:waterportion") return true;
 
             return false;
         }
+        /* Provides the converted asset string- maybe one day this pulls from a recipe json but for now... 
+         * not worth the effort
+         */
         public string GetConversion()
         {
             string itemcode = Inventory[0]?.Itemstack?.Collectible?.Code?.ToString();
@@ -140,8 +144,8 @@ namespace StinkySurvivalMod.BlockEntities
         }
 
         void Inventory_SlotModified(int slotId) {
-            Api.Logger.Notification("Slot {0} modified", slotId);
-            Api.Logger.Notification("Inventory_SlotModified Slot 0: " + inventory[0]?.Itemstack?.StackSize);
+     //       Api.Logger.Notification("Slot {0} modified", slotId);
+     //       Api.Logger.Notification("Inventory_SlotModified Slot 0: " + inventory[0]?.Itemstack?.StackSize);
 
             convertFlag = TestIngredients();
             MarkDirty(true);
@@ -154,6 +158,7 @@ namespace StinkySurvivalMod.BlockEntities
                         if (Api.Side == EnumAppSide.Server && liqId == -1)
                         {
                            liqId = RegisterGameTickListener(ProcessLiquids, 5000, 5000);
+                            Api.Logger.Notification("ProcessLiquids {0}", liqId);
                         }
                         else if (Api.Side == EnumAppSide.Client && partId == -1)
                         {
@@ -176,18 +181,21 @@ namespace StinkySurvivalMod.BlockEntities
                 }
 
             }
-            if (slotId == 2) {
+        /*   We don't care about slot 2 fuck it let it fall on the ground hahahaha
+         *   
+         *   if (slotId == 2) {
                 
                 BlockLiquidContainerBase cntBlock = bucketSlot?.Itemstack?.Collectible as BlockLiquidContainerBase;
                 if (cntBlock != null) {
-                    Api.Logger.Notification("Bucket amount = " + cntBlock.GetCurrentLitres(bucketSlot.Itemstack).ToString());
+       //             Api.Logger.Notification("Bucket amount = " + cntBlock.GetCurrentLitres(bucketSlot.Itemstack).ToString());
                 }
                 else
                 {
-                    Api.Logger.Notification("bucket removed");
+        //            Api.Logger.Notification("bucket removed");
                 }
             };
-            Api.Logger.Notification("Inventory_SlotModified Slot 0: " + inventory[0]?.Itemstack?.StackSize);
+        //    Api.Logger.Notification("Inventory_SlotModified Slot 0: " + inventory[0]?.Itemstack?.StackSize);
+        */
         }
         public override void Initialize(ICoreAPI api)
         {
@@ -215,6 +223,7 @@ namespace StinkySurvivalMod.BlockEntities
                 if (Api.Side == EnumAppSide.Server && liqId == -1)
                 {
                     liqId = RegisterGameTickListener(ProcessLiquids, 5000, 5000);
+                    api.Logger.Notification("ProcessLiquids {0}", liqId);
                 }
                 else if (Api.Side == EnumAppSide.Client && partId == -1)
                 {
@@ -223,22 +232,23 @@ namespace StinkySurvivalMod.BlockEntities
             }
         }
 
+        //used for consuming items
+        int amountTransfered = 0;
         public void ProcessLiquids(float dt)
         {
-            Api.Logger.Notification("ProcessLiquids Slot 0: " + inventory[0]?.Itemstack?.StackSize);
-            //multithread hell but no other way
+            //this func contains multithread hell but no other way I know in c# other than trap errors
             liquidElapsed += dt;
+            //checks if items in the basin will convert
             convertFlag = TestIngredients();
 
             if (liquidElapsed > 5.0f) {
                 
-                //lets touch these the least often as possible and just put back in the end
                 ItemStack bucket = bucketSlot?.Itemstack;
                 ItemStack liq = inventory[1]?.Itemstack?.Clone();
                 BlockLiquidContainerBase bbucket = Inventory[2]?.Itemstack?.Collectible as BlockLiquidContainerBase;
               //  ItemStack bucketcontent = null;
               //  WaterTightContainableProps bucketliquidprops = null;
-                WaterTightContainableProps basinliquidprops = null;
+
 
                 /* 
                  * Maybe one day but this commented code (above and below) to get items per litre causes issues (null shit)
@@ -257,15 +267,17 @@ namespace StinkySurvivalMod.BlockEntities
                 while (liquidElapsed > 5.0f && bucket != null && liq != null)
                 {
                     liquidElapsed -= 5.0f;
-                    float desiredAmount = 0.05f;
+                    float desiredAmount = 0.10f;
                     if (liq != null && liq.StackSize > 0)
                     {
-                        liq.StackSize -= 5;
-                        if (liq.StackSize < 0)
+                        //default drain, tough titties lye users
+                        liq.StackSize -= 10;
+                        //if stacksize is less than 0.10 desired amount:
+                        if (liq.StackSize < 10)
                         {
                             //see comment above for why 100
-                            desiredAmount = (float)(liq.StackSize/100) + desiredAmount; 
-                            liq.StackSize = 0;
+                            desiredAmount = (float)(liq.StackSize/100); 
+
                         }
                     }
                     else
@@ -279,29 +291,65 @@ namespace StinkySurvivalMod.BlockEntities
 
                     if (bucketSlot != null && bucketSlot.Empty == false)
                     {
-                        //thread hell
+                        //thread hell wrapper
                         try
                         {
-
+                            //we'll be nice: don't consume hard earned items 
                             if (bbucket != null && !bbucket.IsFull(bucket))
                             {
-                                Api.Logger.Notification("liq stack size: " + liq.StackSize);
-                                float moved = 0;
+                                //Api.Logger.Notification("liq stack size: " + liq.StackSize);
+
                                 if (convertFlag)
                                 {
+
+                                    //Api.Logger.Notification("In conversion zone");
                                     ItemStack liqStack = new ItemStack(Api.World.GetItem(new AssetLocation(GetConversion())));
                                     liqStack.StackSize = liq.StackSize;
-                                    moved = bbucket.TryPutLiquid(bucket, liq, desiredAmount);
-                                    liq.StackSize = liqStack.StackSize;
+                                    int amount = bbucket.TryPutLiquid(bucket, liqStack, desiredAmount);
+                                    if (amount == 0)
+                                    {
+                                        //check for mismatch liquids and if so play splash
+                                        //TODO: send packet to trigger animation on client
+                                        var bucketcontents = bbucket.GetContents(Api.World, bucketSlot.Itemstack);
+                                        if (bucketcontents.Any() && bucketcontents[0].Collectible.Code != liqStack.Collectible.Code)
+                                        {
+                                            Api.World.PlaySoundAt(new AssetLocation("game:sounds/effect/water-fill1"), Pos, 0, null, true, 32, 5);
+                                        }
+                                    }
+                                    amountTransfered += amount;
+                                    Api.Logger.Notification("Amount transferred: {0} So far: {1}", amount, amountTransfered);
+                                    //maybe we make this configurable but probably not
+                                    //this consumes 2x amount produced so 20L of water/lye becomes 10L of lye/saltpeter
+                                    if (amount > liq.StackSize)
+                                    {
+                                        liq.StackSize = 0;
+                                    }
+                                    else
+                                    {
+                                        liq.StackSize -= amount;
+
+                                    }
+                                    
+
+                                    //one litre converted = 1 item consumed
+                                    //consume one on empty liquid
+                                    if (amountTransfered >= 100 || liq.StackSize == 0)
+                                    {
+
+                                        //we are in the conversion zone in a try block so fuck null checks
+                                        inventory[0].Itemstack.StackSize--;
+                                        if (inventory[0].Itemstack.StackSize == 0) inventory[0].TakeOutWhole();
+                                        amountTransfered -= 100;
+                                    }
                                 }
                                 else
                                 {
-                                    moved = bbucket.TryPutLiquid(bucket, liq, desiredAmount);
+                                    int amount = bbucket.TryPutLiquid(bucket, liq, desiredAmount);
                                 }
                                 
 
                                
-                                Api.Logger.Notification("moved "+ moved.ToString() + "new size: "+ bbucket.GetCurrentLitres(bucket).ToString());
+                              //  Api.Logger.Notification("moved "+ moved.ToString() + "new size: "+ bbucket.GetCurrentLitres(bucket).ToString());
                             }
 
                         }
@@ -316,12 +364,15 @@ namespace StinkySurvivalMod.BlockEntities
                 
                 //only put replace if they exist
           //      if (bucketSlot?.Itemstack != null) { bucketSlot.Itemstack.StackSize = bucket.StackSize; }
-                if (inventory[1]?.Itemstack != null) { inventory[1].Itemstack.StackSize = liq.StackSize; }
+                if (inventory[1]?.Itemstack != null) { 
+                    inventory[1].Itemstack.StackSize = liq.StackSize;
+                    if (inventory[1].Itemstack.StackSize <= 0) inventory[1].TakeOutWhole();
+                }
+                
                 inventory[0].MarkDirty();
                 inventory[1].MarkDirty();
                 inventory[2].MarkDirty();
                 MarkDirty(true);
-                Api.Logger.Notification("ProcessLiquids Slot 0: " + inventory[0]?.Itemstack?.StackSize);
             }
                   
             
