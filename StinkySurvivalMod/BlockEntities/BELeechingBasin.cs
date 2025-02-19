@@ -144,8 +144,8 @@ namespace StinkySurvivalMod.BlockEntities
             Api.Logger.Notification("Inventory_SlotModified Slot 0: " + inventory[0]?.Itemstack?.StackSize);
 
             convertFlag = TestIngredients();
-            if (slotId == 0) return;
-            if (slotId == 1)
+            MarkDirty(true);
+            if (slotId == 1 || slotId == 0)
             {
                 if (inventory[1]?.Itemstack != null )
                 {
@@ -207,8 +207,19 @@ namespace StinkySurvivalMod.BlockEntities
                 splashParticles.Bounciness = 0.5f;
                 splashParticles.Color = ColorUtil.ColorFromRgba(255, 123, 0, 90);
 
-                // RegisterGameTickListener(ParticleStep, 500);
 
+            }
+
+            //start liquid processing on init if theres stuff to process
+            if (Inventory[1]?.Itemstack != null && Inventory[1].Itemstack.StackSize > 0) {
+                if (Api.Side == EnumAppSide.Server && liqId == -1)
+                {
+                    liqId = RegisterGameTickListener(ProcessLiquids, 5000, 5000);
+                }
+                else if (Api.Side == EnumAppSide.Client && partId == -1)
+                {
+                    partId = RegisterGameTickListener(ParticleStep, 500, 5000);
+                }
             }
         }
 
@@ -229,7 +240,12 @@ namespace StinkySurvivalMod.BlockEntities
               //  WaterTightContainableProps bucketliquidprops = null;
                 WaterTightContainableProps basinliquidprops = null;
 
-               // if (bbucket != null) 
+                /* 
+                 * Maybe one day but this commented code (above and below) to get items per litre causes issues (null shit)
+                 * when all portions as of now are 100 parts per liter
+                */
+               
+                // if (bbucket != null) 
                // {
                   //  var bucketcontents = bbucket.GetContents(Api.World, bucketSlot.Itemstack);
 
@@ -247,7 +263,8 @@ namespace StinkySurvivalMod.BlockEntities
                         liq.StackSize -= 5;
                         if (liq.StackSize < 0)
                         {
-                            desiredAmount = (float)(liq.StackSize/100) + desiredAmount;
+                            //see comment above for why 100
+                            desiredAmount = (float)(liq.StackSize/100) + desiredAmount; 
                             liq.StackSize = 0;
                         }
                     }
@@ -448,16 +465,16 @@ namespace StinkySurvivalMod.BlockEntities
                         mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
                         Meshes[key] = data;
                     }
-                    if (data == null) { Api.Logger.Notification("liquid shape in leechingbasin null"); return true; }
+
                     WaterTightContainableProps props = BlockLeechingBasin.GetContainableProps(Inventory[1].Itemstack);
-                    if (props != null)
+                    if (props != null && data != null)
                     {
                         data = data.Clone();
                         float fillheight = ((float)(liq.StackSize / props.ItemsPerLitre) / 20) * (0.3125f); //0.3125 == 5.0/16.0
                         data.Translate(0, fillheight + 1.0f, 0); //plus 1.0 because inventory only exists in bottom block
                     }
 
-                    mesher.AddMeshData(data);
+                    if (data != null) mesher.AddMeshData(data);
                 }
                 
             }
@@ -480,17 +497,16 @@ namespace StinkySurvivalMod.BlockEntities
                             mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
                             Meshes[key] = data;
                         }
-                        if (data == null) { Api.Logger.Notification("liquidbucket shape in leechingbasin null"); return true; }
+
                         WaterTightContainableProps props = BlockLeechingBasin.GetContainableProps(bucketliq);
 
-                        if (props != null)
+                        if (props != null && data != null)
                         {
                             data = data.Clone();
                             float fillheight = ((float)(bucketliq.StackSize / props.ItemsPerLitre) / bbucket.CapacityLitres) * (0.5f); //0.5 == 8.0/16.0
                             data.Translate(0, fillheight, 0); //plus 1.0 because inventory only exists in bottom block
                         }
-
-                        mesher.AddMeshData(data);
+                        if (data != null) mesher.AddMeshData(data);
                     }
                 }
             }
@@ -510,10 +526,12 @@ namespace StinkySurvivalMod.BlockEntities
                         mesherer.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/basin/leechingbasin-" + key + ".json"), out data);
                         Meshes[key] = data;
                     }
-                    data = data.Clone();
-                    data.Translate(0, 1.0f, 0);
-                    if (data == null) { Api.Logger.Notification("liquidbucket shape in leechingbasin null"); return true; }
-                    mesher.AddMeshData(data);
+                    if (data != null)
+                    {
+                        data = data.Clone();
+                        data.Translate(0, 1.0f, 0);
+                        mesher.AddMeshData(data);
+                    }
                 }
             }
             return true;
