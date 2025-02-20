@@ -109,7 +109,7 @@ namespace StinkySurvivalMod.Blocks
             {
                 return false;
             }
-            api.Logger.Notification("OnblockInteractFireplace");
+            //api.Logger.Notification("OnblockInteractFireplace");
             ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot?.Itemstack;
             BEFireplace bef = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BEFireplace;;
             if (bef != null) {

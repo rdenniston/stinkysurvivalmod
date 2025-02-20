@@ -104,7 +104,7 @@ namespace StinkySurvivalMod.gui
                 var contents = cntBucket.GetContents(capi.World, bucketslot);
                 if (cntBucket.IsFull(bucketslot))
                 {
-                    warningStr = "Warning: Attached container is full! Leeching liquids will be lost!";
+                    warningStr = "\nWarning: Attached container is full! Leeching liquids will be lost!";
                 }
                 
                 if (contents.Any() && itemcode != null) 
@@ -114,7 +114,7 @@ namespace StinkySurvivalMod.gui
             }
             else
             {
-                warningStr = "Warning: No Liquid Container Attached!";
+                warningStr = "\nWarning: No Liquid Container Attached!";
             }
             if (itemcode != null)
             {

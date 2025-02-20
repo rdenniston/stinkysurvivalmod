@@ -4,12 +4,16 @@
 	"entityClass": "stinkysurvivalmod.befireplace",
 	"variantgroups": [
 		{
+			"code": "metal",
+			"states": ["iron","bronze"]
+		},
+		{
 			"code": "burnstate",
 			"states": [ "extinct", "lit", "cold" ]
 		},
 		{
 			"code": "fuelstate",
-			"states": ["empty","one","two","full"]
+			"states": [ "empty", "one", "two", "full" ]
 		},
 		{
 			"code": "ashstate",
@@ -18,10 +22,10 @@
 	],
 	"renderpass": "OpaqueNoCull",
 	"faceCullMode": "NeverCull",
-	"shape": { "base": "block/fireplace/fireplace-{burnstate}-{fuelstate}-{ashstate}" },
+	"shape": { "base": "block/fireplace/fireplace-{metal}-{burnstate}-{fuelstate}-{ashstate}" },
 	"creativeinventory": {
-		"general": [ "*" ],
-		"decorative": [ "*" ]
+		"general": [ "fireplace-bronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ],
+		"decorative": [ "fireplace-bronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ]
 	},
 	"sidesolid": {
 		"all": false
@@ -31,12 +35,12 @@
 	},
 	"lightAbsorption": 0,
 	"lightHsvByType": {
-		"fireplace-extinct-*": [ 7, 7, 3 ],
-		"fireplace-lit-*": [ 7, 7, 20 ]
+		"fireplace-*-extinct-*": [ 7, 7, 3 ],
+		"fireplace-*-lit-*": [ 7, 7, 20 ]
 	},
 	"materialDensity": 500,
 	"particlePropertiesByType": {
-		"fireplace-extinct-*": [
+		"fireplace-*-extinct-*": [
 			{
 				"hsvaColor": [
 					{
@@ -105,7 +109,7 @@
 				"windAffectednes": 0.7
 			}
 		],
-		"fireplace-lit-*": [
+		"fireplace-*-lit-*": [
 			{
 				"__comment": "Ember cubicles",
 				"hsvaColor": [

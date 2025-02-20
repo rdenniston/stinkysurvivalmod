@@ -510,7 +510,7 @@ namespace StinkySurvivalMod.BlockEntities
         {
             Dictionary<string, MeshData> Meshes = ObjectCacheUtil.GetOrCreate(Api, "fireplace-meshes", () => new Dictionary<string, MeshData>());
 
-            string key = burnstate+"-"+fuelstate+"-"+ashstate;
+            string key = Block.FirstCodePart(1)+"-"+burnstate +"-"+fuelstate+"-"+ashstate;
          //   Api.Logger.Notification("mesh key: "+ key);
             MeshData meshdata;
             Block block = Api.World.BlockAccessor.GetBlock(Pos);
