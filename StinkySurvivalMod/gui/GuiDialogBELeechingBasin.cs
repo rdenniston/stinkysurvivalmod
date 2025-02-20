@@ -68,7 +68,7 @@ namespace StinkySurvivalMod.gui
                     
                     bucketslot = Inventory[2]?.Itemstack;
                     var contents = cntBlock.GetContents(capi.World, bucketslot);
-                    if (contents != null) capi.Logger.Notification("Code: " + contents[0]?.Collectible?.Code?.ToString());
+                    if (contents.Any()) capi.Logger.Notification("Code: " + contents?[0]?.Collectible?.Code?.ToString());
                 }
 
                 if (itemcode == "stinkysurvivalmod:saltedthatch")

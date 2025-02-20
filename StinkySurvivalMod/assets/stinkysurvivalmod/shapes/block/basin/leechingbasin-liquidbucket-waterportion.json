@@ -1,0 +1,47 @@
+{
+	"editor": {
+		"collapsedPaths": "Root/Origin lid/origin handle,Root/origin/origin handle W,Root/origin upper ring,Root/origin/origin handle E,Root/origin lower ring,Root/origin barrel,Root/origin barrel/Origin lid,Root/Origin lid/Cube14",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"water": "game:block/liquid/waterportion"
+	},
+	"elements": [
+		{
+			"name": "Floor",
+			"from": [ 5.0, 0.0, 5.0 ],
+			"to": [ 11.0, 1.0, 11.0 ],
+			"faces": {
+				"north": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 1.0 ], "enabled": false },
+				"east": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 1.0 ], "enabled": false },
+				"south": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 1.0 ], "enabled": false },
+				"west": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 1.0 ], "enabled": false },
+				"up": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 6.0 ], "enabled": false },
+				"down": { "texture": "#null", "uv": [ 0.0, 0.0, 6.0, 6.0 ], "enabled": false }
+			},
+			"children": [
+				{
+					"name": "contents",
+					"from": [ -0.5, 0.0, -0.5 ],
+					"to": [ 6.5, 1.0, 6.5 ],
+					"renderPass": 4,
+					"faces": {
+						"north": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
+						"east": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
+						"south": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
+						"west": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
+						"up": {
+							"texture": "#water",
+							"uv": [ 7.0, 7.0, 14.0, 14.0 ]
+						},
+						"down": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 7.0 ], "enabled": false }
+					}
+				}
+			]
+		}
+	]}

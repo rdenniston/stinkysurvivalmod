@@ -18,7 +18,9 @@
 		"water": "game:block/liquid/waterportion",
 		"sandstone": "game:block/stone/sand/sandstone",
 		"side10": "block/side10",
-		"thatchbedding-ready": "block/thatchbedding-ready"
+		"thatchbedding-ready": "block/thatchbedding-ready",
+		"hydratedsaltpeter": "item/hydratedsaltpeter",
+		"lye": "item/lye"
 	},
 	"elements": [
 		{

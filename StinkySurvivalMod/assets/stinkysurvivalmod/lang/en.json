@@ -3,6 +3,8 @@
   "basin-top-name": "Leeching Basin (Top)",
   "item-lyeportion": "Lye",
   "incontainer-item-lyeportion": "Lye",
+  "item-hydratedsaltpeterportion": "Hydrated Saltpeter",
+  "incontainer-item-hydratedsaltpeterportion": "Hydrated Saltpeter",
   "basin-bottom-name": "Leeching Basin (Bottom)",
   "Fireplace": "Iron Fireplace",
   "fireplace-gui-willcreate": "Creating {0}x",

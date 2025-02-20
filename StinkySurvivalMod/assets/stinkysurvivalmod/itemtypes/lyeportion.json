@@ -9,19 +9,19 @@
     "waterTightContainerProps": {
       "containable": true,
       "itemsPerLitre": 100,
-      "texture": { "base": "game:block/liquid/dilutedborax" },
+      "texture": { "base": "stinkysurvivalmod:item/lye" },
       "allowSpill": true,
       "whenSpilled": {
         "action": "DropContents",
         "stack": {
           "type": "item",
-          "code": "lyeportion"
+          "code": "stinkysurvivalmod:lyeportion"
         }
       }
     }
   },
   "shape": { "base": "game:item/liquid" },
-  "texture": { "base": "game:block/liquid/dilutedborax" },
+  "texture": { "base": "stinkysurvivalmod:item/lye" },
   "creativeinventoryStacks": [
     {
       "tabs": [ "general", "liquids" ],

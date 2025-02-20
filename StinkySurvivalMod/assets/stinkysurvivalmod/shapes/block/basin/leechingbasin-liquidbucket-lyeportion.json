@@ -9,7 +9,7 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"water": "game:block/liquid/waterportionr"
+		"lye": "item/lye"
 	},
 	"elements": [
 		{
@@ -35,10 +35,7 @@
 						"east": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
 						"south": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
 						"west": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 1.0 ], "enabled": false },
-						"up": {
-							"texture": "#water",
-							"uv": [ 7.0, 7.0, 14.0, 14.0 ]
-						},
+						"up": { "texture": "#lye", "uv": [ 7.0, 7.0, 14.0, 14.0 ] },
 						"down": { "texture": "#null", "uv": [ 0.0, 0.0, 7.0, 7.0 ], "enabled": false }
 					}
 				}
