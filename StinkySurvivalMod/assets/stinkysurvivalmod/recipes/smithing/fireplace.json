@@ -1,0 +1,23 @@
+{
+	ingredient: { type: "item", code: "game:ingot-*", name: "metal", allowedVariants: ["tinbronze", "bismuthbronze", "blackbronze", "iron"] },
+	name: "fireplace",
+	pattern: [
+		[
+			"#________#",
+			"#________#",
+			"##########",
+			"#_#____#_#",
+			"#_#____#_#",
+			"##########",
+			"#_#____#_#",
+			"#_#____#_#",
+			"##########",
+			"#_#____#_#",
+			"#_#____#_#",
+			"##########",
+			"__#____#__",
+			"__#____#__"
+		]
+	],
+	output: { type: "block", code: "stinkysurvivalmod:fireplace-{metal}-cold-empty-noashes"  }
+}

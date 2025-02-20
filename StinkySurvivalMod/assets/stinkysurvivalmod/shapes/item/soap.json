@@ -1,0 +1,29 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"rawsalted": "game:block/food/dairy/rawsalted"
+	},
+	"elements": [
+		{
+			"name": "Cube2",
+			"from": [ 6.5, 0.0, 7.0 ],
+			"to": [ 9.5, 1.0, 9.0 ],
+			"rotationOrigin": [ 8.0, 0.5, 8.0 ],
+			"rotationY": 45.0,
+			"faces": {
+				"north": { "texture": "#rawsalted", "uv": [ 11.0, 9.5, 14.0, 10.5 ] },
+				"east": { "texture": "#rawsalted", "uv": [ 10.0, 9.5, 12.0, 10.5 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#rawsalted", "uv": [ 11.0, 9.5, 14.0, 10.5 ] },
+				"west": { "texture": "#rawsalted", "uv": [ 12.5, 9.5, 14.5, 10.5 ] },
+				"up": { "texture": "#rawsalted", "uv": [ 9.5, 1.0, 12.5, 3.0 ] },
+				"down": { "texture": "#rawsalted", "uv": [ 9.5, 8.5, 12.5, 10.5 ] }
+			}
+		}
+	]}

@@ -31,8 +31,8 @@
   "heldTpIdleAnimation": "holdunderarm",
   "faceCullMode": "NeverCull",
   "creativeinventory": {
-    "general": [ "*-bottom" ],
-    "decorative": [ "*-bottom" ]
+    "general": [ "*-nobucket-bottom" ],
+    "decorative": [ "*-nobucket-bottom" ]
   },
   "sidesolid": {
     "all": false

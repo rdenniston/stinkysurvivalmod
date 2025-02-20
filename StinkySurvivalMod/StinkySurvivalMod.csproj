@@ -56,7 +56,10 @@
   <None Remove="assets\stinkysurvivalmod\blocktypes\leechingbasin.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\hydratedsaltpeterportion.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\lyeportion.json" />
+  <None Remove="assets\stinkysurvivalmod\itemtypes\soap.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\woodash.json" />
+  <None Remove="assets\stinkysurvivalmod\recipes\grid\leechingbasin.json" />
+  <None Remove="assets\stinkysurvivalmod\recipes\smithing\fireplace.json" />
   <None Remove="assets\stinkysurvivalmod\recipes\thatchbedding.json" />
   <None Remove="assets\stinkysurvivalmod\shapes\block\basin\bottom.png" />
   <None Remove="assets\stinkysurvivalmod\shapes\block\basin\bucketsides.png" />
@@ -92,7 +95,6 @@
   <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-iron-lit-two-ashes.json" />
   <None Remove="assets\stinkysurvivalmod\shapes\block\fireplace\fireplace-iron-lit-two-noashes.json" />
   <None Remove="assets\stinkysurvivalmod\shapes\item\ash.json" />
-  <None Remove="assets\stinkysurvivalmod\shapes\item\fireplace.json" />
   <None Remove="assets\stinkysurvivalmod\textures\block\basin\bottomspout.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\basin\sides.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\basin\top-empty.png" />
@@ -109,6 +111,7 @@
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-init.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-mature.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-ready.png" />
+  <Content Include="C:\Users\rdenn\AppData\Local\Vintagestory\assets\survival\recipes\smithing\plate.json" Link="plate.json" />
   <Content Include="modinfo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>

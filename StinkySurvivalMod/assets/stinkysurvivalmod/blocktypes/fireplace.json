@@ -5,7 +5,7 @@
 	"variantgroups": [
 		{
 			"code": "metal",
-			"states": ["iron","bronze"]
+			"states": [ "iron", "tinbronze", "blackbronze", "bismuthbronze" ]
 		},
 		{
 			"code": "burnstate",
@@ -24,8 +24,8 @@
 	"faceCullMode": "NeverCull",
 	"shape": { "base": "block/fireplace/fireplace-{metal}-{burnstate}-{fuelstate}-{ashstate}" },
 	"creativeinventory": {
-		"general": [ "fireplace-bronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ],
-		"decorative": [ "fireplace-bronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ]
+		"general": [ "fireplace-bismuthbronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ],
+		"decorative": [ "fireplace-bismuthbronze-cold-empty-noashes", "fireplace-iron-cold-empty-noashes" ]
 	},
 	"sidesolid": {
 		"all": false
@@ -324,26 +324,26 @@
 		"y1": 0,
 		"z1": 0.1875,
 		"x2": 0.8125,
-		"y2": 0.60,
+		"y2": 0.50,
 		"z2": 0.8125
 	},
 	"guiTransform": {
-		"translation": {
-			"x": 0,
-			"y": 0,
-			"z": 0
-		},
-		"rotation": {
-			"x": 10,
-			"y": 20,
-			"z": 0
-		},
-		"origin": {
-			"x": 0.5,
-			"y": 0.2,
-			"z": 0.5
-		},
-		"scale": 2.0
-	}
+			"translation": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": {
+				"x": 10,
+				"y": 20,
+				"z": 0
+			},
+			"origin": {
+				"x": 0.5,
+				"y": 0.2,
+				"z": 0.5
+			},
+			"scale": 2.0
+		}
 
-}
+	}

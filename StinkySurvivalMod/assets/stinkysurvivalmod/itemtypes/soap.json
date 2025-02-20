@@ -1,0 +1,97 @@
+{
+  "code": "soap",
+  "shape": { "base": "shapes/item/soap" },
+  "creativeinventory": {
+    "general": [ "*" ],
+    "items": [ "*" ]
+  },
+  "behaviors": [
+    {
+      "name": "GroundStorable",
+      "properties": {
+        "layout": "Quadrants",
+        "collisionBox": {
+          "x1": 0,
+          "y1": 0,
+          "z1": 0,
+          "x2": 0.5,
+          "y2": 0.125,
+          "z2": 0.5
+        }
+      }
+    }
+  ],
+  "maxstacksize": 32,
+  "materialDensity": 100,
+  "combustibleProps": {
+    "burnTemperature": 600,
+    "burnDuration": 120
+  },
+  "guiTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": -165,
+      "y": 90,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.1,
+      "z": 0.5
+    },
+    "scale": 4
+  },
+  "fpHandTransform": {
+    "rotation": {
+      "x": 84,
+      "y": 92,
+      "z": -30
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.3,
+      "z": 0.6
+    },
+    "scale": 1.31
+  },
+  "tpHandTransform": {
+    "translation": {
+      "x": -1.01,
+      "y": -0.22,
+      "z": -0.89
+    },
+    "rotation": {
+      "x": -90,
+      "y": -14,
+      "z": -6
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.1,
+      "z": 0.5
+    },
+    "scale": 1
+  },
+  "groundTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0,
+      "z": 0.5
+    },
+    "scale": 5
+  }
+}

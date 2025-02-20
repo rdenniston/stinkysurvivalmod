@@ -497,8 +497,9 @@ namespace StinkySurvivalMod.BlockEntities
 
           //  Api.Logger.Notification("On Tesselation after State: " + burnState + " " + fuelState + " " + ashState);
             if (burnState == null) return true;
-
-            mesher.AddMeshData(getOrCreateMesh(burnState, fuelState, ashState));
+            MeshData data = getOrCreateMesh(burnState, fuelState, ashState);
+            //data.Rotate(new Vec3f(0.5f, 0, 0.5f), 0, 3.141593f, 0); //radians?
+            mesher.AddMeshData(data);
 
             return true;
         }

@@ -1,0 +1,42 @@
+{
+  "ingredientPattern": "_B_,SNR,CTH",
+  "width": 3,
+  "height": 3,
+  "ingredients": {
+    "B": {
+      "type": "block",
+      "code": "game:barrel"
+    },
+    "S": {
+      "type": "block",
+      "code": "game:sand-*"
+    },
+    "N": {
+      "type": "item",
+      "code": "game:metalnailsandstrips-*"
+    },
+    "R": {
+      "type": "item",
+      "code": "game:stone-*",
+      "quantity": 8
+    },
+    "C": {
+      "type": "item",
+      "code": "game:chisel-*",
+      "isTool": true
+    },
+    "T": {
+      "type": "block",
+      "code": "game:table-normal"
+    },
+    "H": {
+      "type": "item",
+      "code": "game:hammer-*",
+      "isTool": true
+    }
+  },
+  "output": {
+    "type": "block",
+    "code": "stinkysurvivalmod:leechingbasin-nobucket-bottom"
+  }
+}
