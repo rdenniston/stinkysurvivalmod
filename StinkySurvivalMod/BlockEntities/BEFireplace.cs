@@ -15,6 +15,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StinkySurvivalMod.BlockEntities
 {
@@ -498,7 +499,7 @@ namespace StinkySurvivalMod.BlockEntities
           //  Api.Logger.Notification("On Tesselation after State: " + burnState + " " + fuelState + " " + ashState);
             if (burnState == null) return true;
             MeshData data = getOrCreateMesh(burnState, fuelState, ashState);
-            //data.Rotate(new Vec3f(0.5f, 0, 0.5f), 0, 3.141593f, 0); //radians?
+            
             mesher.AddMeshData(data);
 
             return true;
@@ -523,6 +524,7 @@ namespace StinkySurvivalMod.BlockEntities
                 ITesselatorAPI mesher = ((ICoreClientAPI)Api).Tesselator;
                 
                 mesher.TesselateShape(block, Shape.TryGet(Api, "stinkysurvivalmod:shapes/block/fireplace/fireplace-" + key + ".json"), out meshdata);
+                meshdata.Rotate(new Vec3f(0.5f, 0, 0.5f), 0, 3.141593f, 0); //radians?
                 Meshes[key] = meshdata;
             }
 
