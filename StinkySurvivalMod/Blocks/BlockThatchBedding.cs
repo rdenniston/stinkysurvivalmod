@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 
 namespace StinkySurvivalMod.Blocks
@@ -23,6 +24,15 @@ namespace StinkySurvivalMod.Blocks
             base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
         }
 
+        public override string GetPlacedBlockInfo(IWorldAccessor world, BlockPos pos, IPlayer forPlayer)
+        {
+            var bethatch = world.BlockAccessor.GetBlockEntity<BEThatchBedding>(pos);
+            if (bethatch != null && LastCodePart() != "ready")
+            {
+                return Lang.Get("stinkysurvivalmod:thatch-urineinfo", bethatch.PeeLevel);
+            }
+            else return "";
+        }
         public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
         {
             api.Logger.Notification("GetDrops called");
@@ -36,5 +46,11 @@ namespace StinkySurvivalMod.Blocks
             var drops = bEThatchBedding.GetDrops(basedrops);
             return drops;
         }
+
+        public override void OnNeighbourBlockChange(IWorldAccessor world, BlockPos pos, BlockPos neibpos)
+        {
+            base.OnNeighbourBlockChange(world, pos, neibpos);
+        }
+
     }
 }

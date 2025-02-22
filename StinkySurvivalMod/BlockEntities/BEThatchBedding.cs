@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HarmonyLib;
+using StinkySurvivalMod.Blocks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,24 +14,33 @@ namespace StinkySurvivalMod.BlockEntities
 {
     internal class BEThatchBedding : BlockEntity
     {
-        //tick id
-        long id;
-        float stage;
 
-        public BEThatchBedding()
+        //tick variables
+        Random random;
+        int peeLevel;
+        
+
+        public int PeeLevel { get { return peeLevel; } }
+
+        
+
+        public BEThatchBedding() : base()
         {
+            
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
             base.ToTreeAttributes(tree);
-            tree.SetFloat("stage", stage);
+            tree.SetInt("peeLevel", peeLevel);
+
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldAccessForResolve)
         {
             base.FromTreeAttributes(tree, worldAccessForResolve);
-            stage = tree.GetFloat("stage");
+            peeLevel = tree.GetInt("peeLevel");
+
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -41,23 +52,22 @@ namespace StinkySurvivalMod.BlockEntities
         public override void OnBlockBroken(IPlayer byPlayer = null)
         {
             base.OnBlockBroken(byPlayer);
-            Api.Logger.Notification(this.Block.Code.ToString());
-            UnregisterGameTickListener(this.id);
+            UnregisterAllTickListeners();
+
         }
 
         public override void OnBlockRemoved()
         {
             base.OnBlockRemoved();
-            
-            UnregisterGameTickListener(this.id);
+            UnregisterAllTickListeners();
         }
         
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-            api.Logger.Notification("BEThatchBedding init");
-            this.id = RegisterGameTickListener(OnTick, 10000);
-            
+            random = new Random((int)Api.World.Calendar.ElapsedSeconds);
+           var id =  RegisterGameTickListener(OnTick, 10000+random.Next(1000,10000));
+            if (id > 0) api.Logger.Notification($"thatch bedding ticker on");
         }
 
         public ItemStack[] GetDrops(ItemStack[] drops)
@@ -78,36 +88,57 @@ namespace StinkySurvivalMod.BlockEntities
             }
             return drops;
         }
+
+        
+        public void PeeOnMe()
+        {
+            peeLevel++;
+            Api.Logger.Notification($"Pee level now: {peeLevel}");
+        }
+
         public void OnTick(float dt)
         {
-            Api.Logger.Notification($"Tick {dt}");
-            var entities = Api.World.GetEntitiesAround(Pos.ToVec3d(), 5.0f, 1.5f, e => e.IsCreature && e.Alive );
-            Api.Logger.Notification("found " + entities.Length + " entities");
-            foreach (var entity in entities)
+            if (peeLevel > 4)
             {
-               var code = entity.Code.ToString();
-                Api.Logger.Notification("Received code: " + code);
-               if (code == "game:sheep-bighorn-female" || code == "game:sheep-bighorn-male" || code == "game:sheep-bighorn-lamb" 
-                    || code == "game:pig-wild-female" || code == "game:pig-wild-male" || code == "game:pig-wild-piglet" || code == "game:player")
+                //reset timers
+
+                //change the blocks
+                Block thisblock = Api.World.BlockAccessor.GetBlock(Pos);
+                Api.Logger.Notification("Block code path: " + thisblock.Code.Path.ToString());
+                if (thisblock.Code.Path.EndsWith("init"))
                 {
-                    Api.Logger.Notification("Matched! " + code);
-                    Block thisblock = Api.World.BlockAccessor.GetBlock(Pos);
-                    Api.Logger.Notification("Block code path: "+thisblock.Code.Path.ToString());
-                    if (thisblock.Code.Path.EndsWith("init")) 
-                    {
-                        thisblock = Api.World.GetBlock(thisblock.CodeWithParts("growth"));
-                    } 
-                    else if (thisblock.Code.Path.EndsWith("growth"))
-                    {
-                        thisblock = Api.World.GetBlock(thisblock.CodeWithParts("mature"));
-                    }
-                    else if (thisblock.Code.Path.EndsWith("mature"))
-                    {
-                        thisblock = Api.World.GetBlock(thisblock.CodeWithParts("ready"));
-                    }
-                    Api.Logger.Notification("New Block code path: " + thisblock.Code.Path.ToString());
-                    Api.World.BlockAccessor.SetBlock(thisblock.BlockId, Pos);
+                    thisblock = Api.World.GetBlock(thisblock.CodeWithParts("growth"));
                 }
+                else if (thisblock.Code.Path.EndsWith("growth"))
+                {
+                    thisblock = Api.World.GetBlock(thisblock.CodeWithParts("mature"));
+                }
+                else if (thisblock.Code.Path.EndsWith("mature"))
+                {
+                    thisblock = Api.World.GetBlock(thisblock.CodeWithParts("ready"));
+                }
+                Api.Logger.Notification("New Block code path: " + thisblock.Code.Path.ToString());
+                Api.World.BlockAccessor.SetBlock(thisblock.BlockId, Pos);
+
+                //lets get fancy - if a block changes state add 3 to neighbors who are lower 
+
+                List<Block> blocks = new List<Block>();
+                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.NorthCopy()));
+                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.SouthCopy()));
+                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.EastCopy()));
+                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.WestCopy()));
+
+
+                foreach (var b in blocks)
+                {
+                    var bt = b as BlockThatchBedding;
+                    if (bt != null &&) { 
+                        
+                    }
+                }
+                
+
+                
             }
         }
         

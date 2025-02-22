@@ -29,5 +29,6 @@
   "block-fireplace-bismuthbronze-cold-*": "Bronze Fireplace (Cold)",
   "leechingbasin-diagtitle": "Leeching Basin Item Input",
   "saltedthatch-gui-recipe": "Pouring {0}L of lye through this will create {1}L of hydrated saltpeter ({2} items will be consumed).",
-  "woodash-gui-recipe": "Pouring {0}L of water through this will create {1}L of lye ({2} items will be consumed)."
+  "woodash-gui-recipe": "Pouring {0}L of water through this will create {1}L of lye ({2} items will be consumed).",
+  "thatch-urineinfo" : "Urine Level to next stage: {0}/5\nHint: Any land animal except a chicken can progress this block if they stand on it long enough"
 }

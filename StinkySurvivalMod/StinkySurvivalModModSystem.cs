@@ -1,5 +1,6 @@
 ﻿using StinkySurvivalMod.BlockEntities;
 using StinkySurvivalMod.Blocks;
+using StinkySurvivalMod.Utility;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -24,14 +25,22 @@ namespace StinkySurvivalMod
 
         }
 
+        public override void AssetsFinalize(ICoreAPI api)
+        {
+            base.AssetsFinalize(api);
+
+        }
         public override void StartServerSide(ICoreServerAPI api)
         {
             api.Logger.Notification("Hello from template mod server side: " + Lang.Get("stinkysurvivalmod:hello"));
+            api.Event.OnEntitySpawn += (entity) => entity.addExtraBehaviors();
+            api.Event.OnEntityLoaded += (entity) => entity.addExtraBehaviors();
         }
 
         public override void StartClientSide(ICoreClientAPI api)
         {
             api.Logger.Notification("Hello from template mod client side: " + Lang.Get("stinkysurvivalmod:hello"));
+
         }
 
     }

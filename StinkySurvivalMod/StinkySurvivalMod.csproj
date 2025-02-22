@@ -56,6 +56,7 @@
   <None Remove="assets\stinkysurvivalmod\blocktypes\leechingbasin.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\hydratedsaltpeterportion.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\lyeportion.json" />
+  <None Remove="assets\stinkysurvivalmod\itemtypes\poo.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\soap.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\woodash.json" />
   <None Remove="assets\stinkysurvivalmod\recipes\grid\leechingbasin.json" />
@@ -111,7 +112,8 @@
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-init.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-mature.png" />
   <None Remove="assets\stinkysurvivalmod\textures\block\thatchbedding-ready.png" />
-  <Content Include="C:\Users\rdenn\AppData\Local\Vintagestory\assets\survival\recipes\smithing\plate.json" Link="plate.json" />
+  <None Remove="assets\stinkysurvivalmod\textures\item\cottagecheese.png" />
+  <None Remove="assets\stinkysurvivalmod\textures\item\rotoverlay.png" />
   <Content Include="modinfo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
