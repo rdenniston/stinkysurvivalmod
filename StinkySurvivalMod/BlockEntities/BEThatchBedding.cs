@@ -18,7 +18,7 @@ namespace StinkySurvivalMod.BlockEntities
         //tick variables
         Random random;
         int peeLevel;
-        
+        Dictionary<string,int> stage = new Dictionary<string, int>();
 
         public int PeeLevel { get { return peeLevel; } }
 
@@ -65,9 +65,16 @@ namespace StinkySurvivalMod.BlockEntities
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
+            stage.Add("init", 0);
+            stage.Add("growth", 1);
+            stage.Add("mature", 2);
+            stage.Add("ready", 3);
             random = new Random((int)Api.World.Calendar.ElapsedSeconds);
-           var id =  RegisterGameTickListener(OnTick, 10000+random.Next(1000,10000));
-            if (id > 0) api.Logger.Notification($"thatch bedding ticker on");
+            if (api.World.Side == EnumAppSide.Server)
+            {
+                var id = RegisterGameTickListener(OnTick, 10000 + random.Next(1000, 10000));
+                if (id > 0) api.Logger.Notification($"thatch bedding ticker on");
+            }
         }
 
         public ItemStack[] GetDrops(ItemStack[] drops)
@@ -100,10 +107,40 @@ namespace StinkySurvivalMod.BlockEntities
         {
             if (peeLevel > 4)
             {
-                //reset timers
 
-                //change the blocks
                 Block thisblock = Api.World.BlockAccessor.GetBlock(Pos);
+
+                //lets get fancy - if a block changes state add 2 to neighbors who are lower 
+
+                List<BlockEntity> blocks = new List<BlockEntity>{
+                Api.World.BlockAccessor.GetBlockEntity(Pos.NorthCopy()),
+                Api.World.BlockAccessor.GetBlockEntity(Pos.SouthCopy()),
+                Api.World.BlockAccessor.GetBlockEntity(Pos.EastCopy()),
+                Api.World.BlockAccessor.GetBlockEntity(Pos.WestCopy())
+                };
+                int thisb = stage.TryGetValue(thisblock.LastCodePart());
+                Api.Logger.Notification($"{blocks} {blocks[0]}");
+                foreach (var b in blocks)
+                {
+                    Api.Logger.Notification($"{b}");
+                    var bt = b as BEThatchBedding;
+                    Api.Logger.Notification($"{bt}");
+                    if (bt != null) {
+                        
+                        int ibt = stage.TryGetValue(bt.Block.LastCodePart());
+                        //only get stages younger than self
+                        Api.Logger.Notification($"{thisb} > {ibt}");
+                        if ( thisb > ibt && ibt != -1)
+                        {
+                            bt.PeeOnMe();
+                            bt.PeeOnMe();
+                            bt.MarkDirty(true);
+                        }
+                                
+                    }else Api.Logger.Notification($"bt was null for {b?.Block?.Code?.ToString()}");
+                }
+
+                
                 Api.Logger.Notification("Block code path: " + thisblock.Code.Path.ToString());
                 if (thisblock.Code.Path.EndsWith("init"))
                 {
@@ -120,25 +157,7 @@ namespace StinkySurvivalMod.BlockEntities
                 Api.Logger.Notification("New Block code path: " + thisblock.Code.Path.ToString());
                 Api.World.BlockAccessor.SetBlock(thisblock.BlockId, Pos);
 
-                //lets get fancy - if a block changes state add 3 to neighbors who are lower 
 
-                List<Block> blocks = new List<Block>();
-                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.NorthCopy()));
-                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.SouthCopy()));
-                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.EastCopy()));
-                blocks.Append(Api.World.BlockAccessor.GetBlock(Pos.WestCopy()));
-
-
-                foreach (var b in blocks)
-                {
-                    var bt = b as BlockThatchBedding;
-                    if (bt != null &&) { 
-                        
-                    }
-                }
-                
-
-                
             }
         }
         

@@ -17,8 +17,8 @@ namespace StinkySurvivalMod.EntityBehaviors
     {
         int interval = 100;
         float elapsed = 0;
-        double peeInterval = 0.5;
-        double pooInterval = 1; //hours
+        double peeInterval = 6;
+        double pooInterval = 18; //hours
         ICoreAPI api;
         
 
@@ -103,7 +103,7 @@ namespace StinkySurvivalMod.EntityBehaviors
                 bethatch.MarkDirty(true);
                 return true;
             }
-            api.Logger.Notification("Nothing to pee on! (null)");
+            //api.Logger.Notification("Nothing to pee on! (null)");
             return false;
             
         }
@@ -124,7 +124,7 @@ namespace StinkySurvivalMod.EntityBehaviors
             //get the block its standing on
             BlockPos entityBlockPos = new BlockPos((int)entity.Pos.X, (int)entity.Pos.Y, (int)entity.Pos.Z, entity.Pos.Dimension).Down();
             //check replaceable fuckin chickens breakin fences w their shit
-            if (api.World.BlockAccessor.GetBlock(entityBlockPos.UpCopy()).Replaceable < 6000) return false;
+            
             
             //get the blockentity its on
             BlockEntity be = api.World.BlockAccessor.GetBlockEntity(entityBlockPos);
@@ -132,13 +132,14 @@ namespace StinkySurvivalMod.EntityBehaviors
             BlockEntity beAbove = api.World.BlockAccessor.GetBlockEntity(entityBlockPos.UpCopy());
             
 
-            api.Logger.Notification($"bes: {be} {beAbove}");
+            //api.Logger.Notification($"bes: {be} {beAbove}");
 
             var storageBe = (be as BlockEntityGroundStorage) ?? (beAbove as BlockEntityGroundStorage);
             
             //no ground storage so put one if we can
             if (storageBe == null)
             {
+                if (api.World.BlockAccessor.GetBlock(entityBlockPos.UpCopy()).Replaceable < 6000)  return false; 
                 //just gonna take a hint from ground storable behavior
                 BlockGroundStorage blockgs = entity.World.GetBlock(new AssetLocation("game:groundstorage")) as BlockGroundStorage;
                 if (blockgs == null)
@@ -188,6 +189,8 @@ namespace StinkySurvivalMod.EntityBehaviors
                 }
                 if (placedPoo) 
                 {
+                    //play sound
+
                     storageBe.MarkDirty(true);
                     return true;
                 }

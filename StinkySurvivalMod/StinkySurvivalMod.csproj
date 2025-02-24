@@ -59,6 +59,7 @@
   <None Remove="assets\stinkysurvivalmod\itemtypes\poo.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\soap.json" />
   <None Remove="assets\stinkysurvivalmod\itemtypes\woodash.json" />
+  <None Remove="assets\stinkysurvivalmod\recipes\barrel\poo.json" />
   <None Remove="assets\stinkysurvivalmod\recipes\grid\leechingbasin.json" />
   <None Remove="assets\stinkysurvivalmod\recipes\smithing\fireplace.json" />
   <None Remove="assets\stinkysurvivalmod\recipes\thatchbedding.json" />
