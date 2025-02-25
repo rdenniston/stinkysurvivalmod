@@ -1,0 +1,22 @@
+{
+  "code": "compostheap",
+  "class": "stinkysurvivalmod.blockcompostheap",
+  "entityclass": "stinkysurvivalmod.becompostheap",
+  "blockmaterial": "soil",
+  "creativeinventory": { "general": [ "*" ] },
+  "textures": {
+    "all": { "base": "block/compostheap" }
+  },
+  "shape": { "base": "block/compostheap" },
+  "sounds": {
+    "place": "game:block/plant",
+    "break": "game:block/dirt"
+  },
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "groundTransform": {
+    "translation": { "x": 0,"y": 0, "z": 0 },
+    "origin": { "x": 0.5,"y": 0, "z": 0.5 },
+    "scale": 2
+  }
+}

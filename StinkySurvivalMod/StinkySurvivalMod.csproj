@@ -120,4 +120,8 @@
   </Content>
 </ItemGroup>
 
+<ItemGroup>
+  <Folder Include="assets\stinkysurvivalmod\recipes\cooking\" />
+</ItemGroup>
+
 </Project>

@@ -541,7 +541,9 @@ namespace StinkySurvivalMod.BlockEntities
                             data.CustomFloats = new CustomMeshDataPartFloat(data.FlagsCount * 2);
                             data.CustomFloats.Count = data.FlagsCount * 2;
 
-                            Meshes[key + liq.ToString()] = data;
+
+                             if (liq != null) Meshes[key + liq?.ToString()] = data;
+                           
                         }
 
                     
@@ -587,9 +589,9 @@ namespace StinkySurvivalMod.BlockEntities
                                 data.CustomFloats = new CustomMeshDataPartFloat(data.FlagsCount * 2);
                                 data.CustomFloats.Count = data.FlagsCount * 2;
 
-                                Meshes[key + liq.ToString()] = data;
+                                if (bucketliq != null) Meshes[key + bucketliq.ToString()] = data;
 
-                                Meshes[key] = data;
+                            //    Meshes[key] = data;
                             }
 
                         

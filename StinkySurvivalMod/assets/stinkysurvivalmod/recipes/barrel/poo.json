@@ -2,7 +2,7 @@
 	code: "poo2compost",
 	sealHours: 168,
 	ingredients: [
-		{ type: "item", code: "stinkysurvivalmod:poo-*", name: "poo", quantity: 2, allowedVariants: ["lil-1", "lil-2","lil-3","big-1","big-2","big-3",, "poultry", "bushmeat", "fish"] }
+		{ type: "item", code: "stinkysurvivalmod:poo-*", name: "poo", quantity: 2, allowedVariants: ["lil-1", "lil-2","lil-3","big-1","big-2","big-3","chicken-1","chicken-2", "chicken-3"] }
 	],
-	output: { type: "item", code: "compost", stackSize: 16 }
+	output: { type: "item", code: "game:compost", stackSize: 1 }
 }

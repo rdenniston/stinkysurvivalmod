@@ -1,0 +1,102 @@
+{
+	"editor": {
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"compostheap": "block/compostheap"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [ 1.0, 0.0, 1.0 ],
+			"to": [ 15.0, 1.0, 15.0 ],
+			"rotationOrigin": [ 1.0, 0.0, 1.0 ],
+			"faces": {
+				"north": { "texture": "#compostheap", "uv": [ 0.0, 3.5, 14.0, 4.5 ] },
+				"east": { "texture": "#compostheap", "uv": [ 0.0, 12.5, 14.0, 13.5 ] },
+				"south": { "texture": "#compostheap", "uv": [ 0.0, 12.0, 14.0, 13.0 ] },
+				"west": { "texture": "#compostheap", "uv": [ 0.5, 5.5, 14.5, 6.5 ] },
+				"up": { "texture": "#compostheap", "uv": [ 0.5, 0.5, 14.5, 14.5 ] },
+				"down": { "texture": "#compostheap", "uv": [ 1.5, 1.0, 15.5, 15.0 ] }
+			},
+			"children": [
+				{
+					"name": "mound",
+					"from": [ 1.0, 1.0, 1.0 ],
+					"to": [ 13.0, 3.0, 13.0 ],
+					"rotationOrigin": [ 1.0, 1.0, 1.0 ],
+					"faces": {
+						"north": { "texture": "#compostheap", "uv": [ 3.0, 2.5, 15.0, 4.5 ] },
+						"east": { "texture": "#compostheap", "uv": [ 3.0, 0.0, 15.0, 2.0 ] },
+						"south": { "texture": "#compostheap", "uv": [ 0.5, 13.0, 12.5, 15.0 ] },
+						"west": { "texture": "#compostheap", "uv": [ 1.0, 2.0, 13.0, 4.0 ] },
+						"up": { "texture": "#compostheap", "uv": [ 0.0, 3.5, 12.0, 15.5 ] },
+						"down": { "texture": "#compostheap", "uv": [ 2.5, 0.5, 14.5, 12.5 ] }
+					},
+					"children": [
+						{
+							"name": "mound2",
+							"from": [ 0.75, 2.0, 0.75 ],
+							"to": [ 11.25, 4.0, 11.25 ],
+							"rotationOrigin": [ 1.0, 2.0, 1.0 ],
+							"faces": {
+								"north": { "texture": "#compostheap", "uv": [ 4.0, 9.5, 14.5, 11.5 ] },
+								"east": { "texture": "#compostheap", "uv": [ 4.5, 8.0, 15.0, 10.0 ] },
+								"south": { "texture": "#compostheap", "uv": [ 1.5, 1.5, 12.0, 3.5 ] },
+								"west": { "texture": "#compostheap", "uv": [ 4.0, 13.5, 14.5, 15.5 ] },
+								"up": { "texture": "#compostheap", "uv": [ 0.5, 0.5, 11.0, 11.0 ] },
+								"down": { "texture": "#compostheap", "uv": [ 0.0, 1.0, 10.5, 11.5 ] }
+							}
+						},
+						{
+							"name": "mound3",
+							"from": [ 1.25, 4.0, 1.25 ],
+							"to": [ 10.75, 6.0, 10.75 ],
+							"rotationOrigin": [ 1.0, 4.0, 1.0 ],
+							"faces": {
+								"north": { "texture": "#compostheap", "uv": [ 3.0, 9.0, 12.5, 11.0 ] },
+								"east": { "texture": "#compostheap", "uv": [ 6.5, 10.0, 16.0, 12.0 ] },
+								"south": { "texture": "#compostheap", "uv": [ 0.5, 12.5, 10.0, 14.5 ] },
+								"west": { "texture": "#compostheap", "uv": [ 4.0, 4.5, 13.5, 6.5 ] },
+								"up": { "texture": "#compostheap", "uv": [ 2.5, 1.0, 12.0, 10.5 ] },
+								"down": { "texture": "#compostheap", "uv": [ 3.5, 4.0, 13.0, 13.5 ] }
+							}
+						},
+						{
+							"name": "mound4",
+							"from": [ 2.25, 6.0, 2.25 ],
+							"to": [ 9.75, 8.0, 9.75 ],
+							"rotationOrigin": [ 2.0, 6.0, 2.0 ],
+							"faces": {
+								"north": { "texture": "#compostheap", "uv": [ 6.5, 2.0, 14.0, 4.0 ] },
+								"east": { "texture": "#compostheap", "uv": [ 8.0, 0.0, 15.5, 2.0 ] },
+								"south": { "texture": "#compostheap", "uv": [ 3.0, 4.5, 10.5, 6.5 ] },
+								"west": { "texture": "#compostheap", "uv": [ 3.5, 1.0, 11.0, 3.0 ] },
+								"up": { "texture": "#compostheap", "uv": [ 3.5, 7.0, 11.0, 14.5 ] },
+								"down": { "texture": "#compostheap", "uv": [ 0.5, 5.5, 8.0, 13.0 ] }
+							}
+						},
+						{
+							"name": "mound5",
+							"from": [ 3.25, 8.0, 3.25 ],
+							"to": [ 8.75, 9.0, 8.75 ],
+							"rotationOrigin": [ 3.0, 8.0, 3.0 ],
+							"faces": {
+								"north": { "texture": "#compostheap", "uv": [ 3.5, 14.0, 9.0, 15.0 ] },
+								"east": { "texture": "#compostheap", "uv": [ 7.5, 0.5, 13.0, 1.5 ] },
+								"south": { "texture": "#compostheap", "uv": [ 1.0, 5.5, 6.5, 6.5 ] },
+								"west": { "texture": "#compostheap", "uv": [ 0.5, 3.5, 6.0, 4.5 ] },
+								"up": { "texture": "#compostheap", "uv": [ 5.0, 0.5, 10.5, 6.0 ] },
+								"down": { "texture": "#compostheap", "uv": [ 7.5, 7.5, 13.0, 13.0 ] }
+							}
+						}
+					]
+				}
+			]
+		}
+	]}

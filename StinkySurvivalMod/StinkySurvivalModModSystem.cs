@@ -22,6 +22,8 @@ namespace StinkySurvivalMod
             api.RegisterBlockEntityClass(Mod.Info.ModID + ".befireplace", typeof(BEFireplace));
             api.RegisterBlockClass(Mod.Info.ModID + ".blockleechingbasin", typeof(BlockLeechingBasin));
             api.RegisterBlockEntityClass(Mod.Info.ModID + ".beleechingbasin", typeof(BELeechingBasin));
+            api.RegisterBlockClass(Mod.Info.ModID + ".blockcompostheap", typeof(BlockCompostHeap));
+            api.RegisterBlockEntityClass(Mod.Info.ModID + ".becompostheap", typeof(BECompostHeap));
 
         }
 
